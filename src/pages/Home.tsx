@@ -21,7 +21,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
-const categories = ['Shirts', 'Pants', 'Shoes', 'Trousers'];
+const categories = ['Shirts', 'Pants', 'Shoes', 'Hoddies'];
 
 export default function Home() {
   // ---------------------------------------------------------
@@ -74,48 +74,92 @@ export default function Home() {
       className="min-h-screen pt-24 pb-20 overflow-hidden"
     >
       {/* 
-        ✅ HERO SECTION UI FIXES ONLY
-        Removed the dark background image and replaced white-on-white text 
-        with high-contrast dark gray/black text for perfect visibility. 
+        ✅ ENHANCED HERO SECTION WITH ATTRACTIVE VISUAL BACKGROUND
+        High-quality fashion photo with perfect text contrast overlay
       */}
       <section className="relative px-6 lg:px-12 max-w-7xl mx-auto mb-32 h-[80vh] min-h-[600px] flex flex-col justify-center">
-        {/* Clean, minimalist white background container */}
-        <div className="absolute inset-0 rounded-[3rem] overflow-hidden -z-10 bg-white shadow-[0_4px_40px_rgb(0,0,0,0.03)] border border-zinc-100">
-           <div className="absolute inset-0 bg-gradient-to-b from-zinc-50/50 to-white"></div>
+        {/* Background Image/Video Container */}
+        <div className="absolute inset-0 rounded-[3rem] overflow-hidden -z-10 shadow-[0_8px_60px_rgb(0,0,0,0.12)]">
+          {/* High-Quality Fashion Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&q=80&w=2000"
+              alt="Fashion background"
+              className="w-full h-full object-cover object-center scale-105 animate-[zoom_20s_ease-in-out_infinite_alternate]"
+            />
+          </div>
+
+          {/* 
+            Alternative: Video Background (uncomment to use)
+            Replace the img above with this video element
+          */}
+          {/* 
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover object-center"
+          >
+            <source src="/path-to-your-video.mp4" type="video/mp4" />
+          </video>
+          */}
+
+          {/* Gradient Overlay for Perfect Text Contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+          
+          {/* Subtle Pattern Overlay */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
         </div>
 
         <motion.div variants={fadeUp} className="relative z-10 flex flex-col items-center text-center px-4">
-          <span className="mb-6 px-6 py-2 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-600 text-xs font-bold tracking-[0.2em] uppercase">
+          <span className="mb-6 px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-bold tracking-[0.2em] uppercase shadow-lg">
             Curated Menswear
           </span>
           
-          {/* Changed 'text-white' to 'text-zinc-900' (Black) */}
-          <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif font-semibold text-zinc-900 tracking-widest leading-none mb-6 text-balance">
+          {/* Main Headline - White text with subtle shadow for depth */}
+          <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif font-semibold text-white tracking-widest leading-none mb-6 text-balance drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
             ELVERA
           </h1>
           
-          {/* Changed 'text-zinc-200' to 'text-zinc-500' (Readable Medium Gray) */}
-          <p className="text-lg md:text-2xl text-zinc-500 font-medium tracking-wide max-w-2xl mb-12 text-balance">
+          {/* Subheadline - Light gray with excellent contrast */}
+          <p className="text-lg md:text-2xl text-zinc-100 font-medium tracking-wide max-w-2xl mb-12 text-balance drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
             Dress like no one else. The finest curation of premium fashion from trusted platforms.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-            {/* Primary Button: Solid Black with White Text */}
+            {/* Primary CTA Button - White background for maximum visibility */}
             <Link
               to="/shop"
-              className="group px-10 py-5 bg-zinc-900 text-white rounded-full text-sm font-bold tracking-widest hover:bg-zinc-800 transition-all flex items-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              className="group px-10 py-5 bg-white text-zinc-900 rounded-full text-sm font-bold tracking-widest hover:bg-zinc-100 transition-all flex items-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.4)] hover:-translate-y-0.5"
             >
               SHOP COLLECTION
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             
-            {/* Secondary Button: White background with clean gray border */}
+            {/* Secondary CTA Button - Transparent with white border */}
             <Link
               to="/combos"
-              className="group px-10 py-5 bg-white text-zinc-900 border border-zinc-200 rounded-full text-sm font-bold tracking-widest hover:bg-zinc-50 transition-all flex items-center gap-3"
+              className="group px-10 py-5 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-full text-sm font-bold tracking-widest hover:bg-white/20 hover:border-white/50 transition-all flex items-center gap-3 shadow-lg"
             >
               VIEW OUTFITS
             </Link>
+          </div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 1, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-1.5 h-1.5 rounded-full bg-white"
+            />
           </div>
         </motion.div>
       </section>

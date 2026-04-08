@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, TrendingUp, Play } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import ComboCard from '../components/ComboCard';
 import { productsService } from '@/lib/firebase/products';
@@ -21,7 +21,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
-const categories = ['Shirts', 'Pants', 'Shoes', 'Hoddies'];
+const categories = ['Shirts', 'Pants', 'Shoes', 'Trousers'];
 
 export default function Home() {
   // ---------------------------------------------------------
@@ -74,85 +74,196 @@ export default function Home() {
       className="min-h-screen pt-24 pb-20 overflow-hidden"
     >
       {/* 
-        ✅ ENHANCED HERO SECTION WITH ATTRACTIVE VISUAL BACKGROUND
-        High-quality fashion photo with perfect text contrast overlay
+        ✅ STUNNING HERO SECTION WITH CLOTHING VISUALS
       */}
-      <section className="relative px-6 lg:px-12 max-w-7xl mx-auto mb-32 h-[80vh] min-h-[600px] flex flex-col justify-center">
-        {/* Background Image/Video Container */}
-        <div className="absolute inset-0 rounded-[3rem] overflow-hidden -z-10 shadow-[0_8px_60px_rgb(0,0,0,0.12)]">
-          {/* High-Quality Fashion Background Image */}
-          <div className="absolute inset-0">
-            <img
-              src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&q=80&w=2000"
-              alt="Fashion background"
-              className="w-full h-full object-cover object-center scale-105 animate-[zoom_20s_ease-in-out_infinite_alternate]"
-            />
+      <section className="relative px-6 lg:px-12 max-w-7xl mx-auto mb-32 h-[90vh] min-h-[700px] flex items-center">
+        {/* Main Container with rounded corners */}
+        <div className="absolute inset-0 rounded-[3rem] overflow-hidden -z-10 shadow-2xl">
+          {/* Split Screen Layout - Left: Image, Right: Content */}
+          <div className="absolute inset-0 flex">
+            {/* LEFT SIDE - STUNNING CLOTHING IMAGE */}
+            <div className="w-full lg:w-3/5 relative overflow-hidden">
+              {/* Main Hero Image - High Fashion Model/Clothing */}
+              <img
+                src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&q=80&w=2000"
+                alt="Premium Menswear"
+                className="w-full h-full object-cover object-center"
+              />
+              
+              {/* Gradient Overlay for text blend */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent lg:to-black/80"></div>
+              
+              {/* Floating Product Cards - Showcase individual items */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="absolute top-8 right-8 hidden lg:block"
+              >
+                <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl max-w-[200px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1594938291221-94f18cbb5660?auto=format&fit=crop&q=80&w=400"
+                    alt="Featured Shirt"
+                    className="w-full h-32 object-cover rounded-lg mb-3"
+                  />
+                  <h4 className="text-sm font-bold text-zinc-900 mb-1">Premium Cotton Shirt</h4>
+                  <p className="text-xs text-zinc-600 mb-2">Classic Fit</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-zinc-900">$89</span>
+                    <span className="text-xs text-emerald-600 font-semibold">In Stock</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="absolute bottom-8 right-8 hidden lg:block"
+              >
+                <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl max-w-[200px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&q=80&w=400"
+                    alt="Featured Sneakers"
+                    className="w-full h-32 object-cover rounded-lg mb-3"
+                  />
+                  <h4 className="text-sm font-bold text-zinc-900 mb-1">Designer Sneakers</h4>
+                  <p className="text-xs text-zinc-600 mb-2">Limited Edition</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-zinc-900">$149</span>
+                    <span className="text-xs text-amber-600 font-semibold">Few Left</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Video Play Button Overlay (Optional) */}
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className="absolute bottom-12 left-12 hidden md:flex items-center gap-3 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white px-6 py-3 rounded-full transition-all group border border-white/30"
+              >
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Play className="w-5 h-5 text-zinc-900 fill-zinc-900 ml-0.5" />
+                </div>
+                <span className="text-sm font-bold tracking-wide">Watch Collection</span>
+              </motion.button>
+            </div>
+
+            {/* RIGHT SIDE - CONTENT (Hidden on mobile, overlaid on image) */}
+            <div className="hidden lg:block w-2/5 bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 relative">
+              {/* Decorative Pattern */}
+              <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+              
+              {/* Stats/Features */}
+              <div className="absolute bottom-12 left-12 right-12">
+                <div className="grid grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-white mb-1">500+</div>
+                    <div className="text-xs text-zinc-400 uppercase tracking-wider">Products</div>
+                  </div>
+                  <div className="text-center border-x border-white/10">
+                    <div className="text-3xl font-bold text-white mb-1">50+</div>
+                    <div className="text-xs text-zinc-400 uppercase tracking-wider">Brands</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-white mb-1">4.9</div>
+                    <div className="text-xs text-zinc-400 uppercase tracking-wider">Rating</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          {/* 
-            Alternative: Video Background (uncomment to use)
-            Replace the img above with this video element
-          */}
-          {/* 
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover object-center"
-          >
-            <source src="/path-to-your-video.mp4" type="video/mp4" />
-          </video>
-          */}
-
-          {/* Gradient Overlay for Perfect Text Contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
-          
-          {/* Subtle Pattern Overlay */}
-          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
         </div>
 
-        <motion.div variants={fadeUp} className="relative z-10 flex flex-col items-center text-center px-4">
-          <span className="mb-6 px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-bold tracking-[0.2em] uppercase shadow-lg">
-            Curated Menswear
-          </span>
+        {/* CONTENT OVERLAY - Centered on mobile, left-aligned on desktop */}
+        <motion.div 
+          variants={fadeUp} 
+          className="relative z-10 w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left px-4 lg:px-12"
+        >
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mb-6 px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-bold tracking-[0.2em] uppercase shadow-lg"
+          >
+            Premium Menswear Collection
+          </motion.span>
           
-          {/* Main Headline - White text with subtle shadow for depth */}
-          <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif font-semibold text-white tracking-widest leading-none mb-6 text-balance drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
-            ELVERA
-          </h1>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white tracking-tight leading-[0.9] mb-6"
+          >
+            ELEVATE
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">
+              YOUR STYLE
+            </span>
+          </motion.h1>
           
-          {/* Subheadline - Light gray with excellent contrast */}
-          <p className="text-lg md:text-2xl text-zinc-100 font-medium tracking-wide max-w-2xl mb-12 text-balance drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-            Dress like no one else. The finest curation of premium fashion from trusted platforms.
-          </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-base md:text-lg text-zinc-200 font-medium max-w-lg mb-8 leading-relaxed"
+          >
+            Discover curated premium fashion from the world's best brands. 
+            <span className="text-white font-semibold"> Shop smarter, dress better.</span>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-            {/* Primary CTA Button - White background for maximum visibility */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-col sm:flex-row items-center gap-4 sm:gap-4 w-full sm:w-auto"
+          >
             <Link
               to="/shop"
-              className="group px-10 py-5 bg-white text-zinc-900 rounded-full text-sm font-bold tracking-widest hover:bg-zinc-100 transition-all flex items-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.4)] hover:-translate-y-0.5"
+              className="group w-full sm:w-auto px-10 py-5 bg-white text-zinc-900 rounded-full text-sm font-bold tracking-widest hover:bg-zinc-100 transition-all flex items-center justify-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.4)] hover:-translate-y-0.5"
             >
-              SHOP COLLECTION
+              SHOP NOW
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             
-            {/* Secondary CTA Button - Transparent with white border */}
             <Link
               to="/combos"
-              className="group px-10 py-5 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-full text-sm font-bold tracking-widest hover:bg-white/20 hover:border-white/50 transition-all flex items-center gap-3 shadow-lg"
+              className="group w-full sm:w-auto px-10 py-5 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-full text-sm font-bold tracking-widest hover:bg-white/20 hover:border-white/50 transition-all flex items-center justify-center gap-3"
             >
               VIEW OUTFITS
             </Link>
-          </div>
+          </motion.div>
+
+          {/* Trust Badges */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="mt-12 flex items-center gap-8 text-white/70 text-xs"
+          >
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span className="font-semibold">Trusted by 10k+ customers</span>
+            </div>
+            <div className="hidden sm:block w-px h-4 bg-white/20"></div>
+            <div className="hidden sm:flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span className="font-semibold">Verified Products</span>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 1, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+          transition={{ delay: 1.2, duration: 1, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:block"
         >
           <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
             <motion.div

@@ -83,7 +83,7 @@ export default function Home() {
           {/* Background Image with Overlay */}
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&q=80&w=1600"
+              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=1600"
               alt="Premium menswear collection"
               className="w-full h-full object-cover object-center"
             />

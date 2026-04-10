@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, TrendingUp, Star } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import ComboCard from '../components/ComboCard';
 import { productsService } from '@/lib/firebase/products';
@@ -19,6 +19,16 @@ const fadeUp: any = {
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
+const imageFloat = {
+  hidden: { opacity: 0, scale: 0.95, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+  },
 };
 
 const categories = ['Shirts', 'Pants', 'Shoes', 'Trousers'];
@@ -74,85 +84,176 @@ export default function Home() {
       className="min-h-screen pt-24 pb-20 overflow-hidden"
     >
       {/* 
-        ✅ HERO SECTION WITH SIDE-BY-SIDE LAYOUT
-        Text on left, attractive clothing image on right
+        ✨ PREMIUM HERO SECTION - Enhanced with Magazine-Style Layout
       */}
-      <section className="relative px-6 lg:px-12 max-w-7xl mx-auto mb-32 h-[80vh] min-h-[600px]">
-        {/* Background container */}
-        <div className="absolute inset-0 rounded-[3rem] overflow-hidden -z-10 bg-white shadow-[0_4px_40px_rgb(0,0,0,0.03)] border border-zinc-100">
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-50/50 to-white"></div>
-        </div>
-
-        <div className="relative z-10 h-full grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* LEFT SIDE - Text Content (Your Original Text) */}
-          <motion.div variants={fadeUp} className="flex flex-col justify-center px-4 lg:px-8">
-            <span className="mb-6 px-6 py-2 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-600 text-xs font-bold tracking-[0.2em] uppercase inline-block w-fit">
-              Curated Menswear
-            </span>
+      <section className="relative px-6 lg:px-12 max-w-[1600px] mx-auto mb-32">
+        {/* Main Hero Container */}
+        <div className="relative h-[85vh] min-h-[700px] rounded-[3rem] overflow-hidden bg-gradient-to-br from-zinc-50 via-white to-zinc-100 shadow-[0_8px_60px_rgb(0,0,0,0.08)] border border-zinc-200/50">
+          
+          {/* Subtle Pattern Overlay */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+          
+          <div className="relative z-10 h-full grid lg:grid-cols-2 gap-0">
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-semibold text-zinc-900 tracking-widest leading-none mb-6">
-              ELVERA
-            </h1>
-            
-            <p className="text-lg md:text-xl text-zinc-500 font-medium tracking-wide max-w-xl mb-12">
-              Dress like no one else. The finest curation of premium fashion from trusted platforms.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-              <Link
-                to="/shop"
-                className="group px-10 py-5 bg-zinc-900 text-white rounded-full text-sm font-bold tracking-widest hover:bg-zinc-800 transition-all flex items-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            {/* LEFT SIDE - Premium Text Content */}
+            <motion.div 
+              variants={fadeUp} 
+              className="flex flex-col justify-center px-8 lg:px-16 xl:px-24 py-12"
+            >
+              {/* Badge */}
+              <motion.span 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="mb-8 px-6 py-2.5 rounded-full bg-gradient-to-r from-zinc-900 to-zinc-700 text-white text-[10px] font-bold tracking-[0.25em] uppercase inline-flex items-center gap-2 w-fit shadow-lg"
               >
-                SHOP COLLECTION
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+                <Star className="w-3 h-3 fill-white" />
+                Curated Excellence
+              </motion.span>
               
-              <Link
-                to="/combos"
-                className="group px-10 py-5 bg-white text-zinc-900 border border-zinc-200 rounded-full text-sm font-bold tracking-widest hover:bg-zinc-50 transition-all flex items-center gap-3"
-              >
-                VIEW OUTFITS
-              </Link>
-            </div>
-          </motion.div>
+              {/* Main Heading */}
+              <h1 className="text-6xl md:text-7xl xl:text-8xl font-serif font-bold text-zinc-900 tracking-tight leading-[0.95] mb-6">
+                ELVERA
+                <span className="block text-5xl md:text-6xl xl:text-7xl text-zinc-400 mt-2">
+                  Menswear
+                </span>
+              </h1>
+              
+              {/* Description */}
+              <p className="text-lg md:text-xl text-zinc-600 font-medium leading-relaxed max-w-lg mb-10">
+                Discover the art of exceptional dressing. Premium fashion, 
+                <span className="text-zinc-900 font-semibold"> handpicked from the world's finest platforms</span>, 
+                curated exclusively for the modern gentleman.
+              </p>
 
-          {/* RIGHT SIDE - Attractive Clothing Image */}
-          <motion.div 
-            variants={fadeUp}
-            className="relative h-full min-h-[400px] lg:min-h-[600px] rounded-[2rem] overflow-hidden"
-          >
-            {/* Main Hero Image */}
-            <div className="absolute inset-0">
-              <img
-                src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&q=80&w=1200"
-                alt="Premium menswear fashion"
-                className="w-full h-full object-cover object-center"
-              />
-              {/* Subtle overlay for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/20 via-transparent to-transparent"></div>
-            </div>
-
-            {/* Floating Badge on Image */}
-            <div className="absolute top-8 right-8 px-6 py-3 bg-white/95 backdrop-blur-sm rounded-full shadow-lg border border-zinc-100">
-              <p className="text-xs font-bold tracking-widest text-zinc-900 uppercase">New Arrivals</p>
-            </div>
-
-            {/* Bottom Info Card on Image */}
-            <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-zinc-100">
-              <div className="flex items-center justify-between">
+              {/* Stats Row */}
+              <div className="flex items-center gap-8 mb-12 pb-8 border-b border-zinc-200">
                 <div>
-                  <p className="text-sm font-bold tracking-widest text-zinc-500 uppercase mb-1">This Week</p>
-                  <p className="text-2xl font-serif font-bold text-zinc-900">Premium Selection</p>
+                  <p className="text-3xl font-serif font-bold text-zinc-900">500+</p>
+                  <p className="text-xs font-bold tracking-widest text-zinc-500 uppercase mt-1">Products</p>
                 </div>
-                <Link 
+                <div>
+                  <p className="text-3xl font-serif font-bold text-zinc-900">50+</p>
+                  <p className="text-xs font-bold tracking-widest text-zinc-500 uppercase mt-1">Brands</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-serif font-bold text-zinc-900">4.9</p>
+                  <p className="text-xs font-bold tracking-widest text-zinc-500 uppercase mt-1">Rating</p>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-start gap-4">
+                <Link
                   to="/shop"
-                  className="w-12 h-12 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition-colors"
+                  className="group px-12 py-5 bg-zinc-900 text-white rounded-full text-sm font-bold tracking-[0.2em] hover:bg-zinc-800 transition-all flex items-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)] hover:-translate-y-0.5 uppercase"
                 >
-                  <ArrowRight className="w-5 h-5" />
+                  Shop Collection
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                
+                <Link
+                  to="/combos"
+                  className="group px-12 py-5 bg-white text-zinc-900 border-2 border-zinc-200 rounded-full text-sm font-bold tracking-[0.2em] hover:bg-zinc-50 hover:border-zinc-300 transition-all flex items-center gap-3 uppercase"
+                >
+                  View Outfits
                 </Link>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* RIGHT SIDE - Premium Image Grid */}
+            <motion.div 
+              variants={imageFloat}
+              className="relative h-full p-8 lg:p-12"
+            >
+              {/* Main Large Image */}
+              <div className="relative h-full rounded-[2rem] overflow-hidden shadow-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&q=80&w=1200"
+                  alt="Premium menswear model"
+                  className="w-full h-full object-cover object-center scale-105 hover:scale-100 transition-transform duration-700"
+                />
+                
+                {/* Gradient Overlays for Depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/30 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-zinc-900/10 via-transparent to-transparent"></div>
+
+                {/* Floating Small Image Card - Top Right */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 20, y: -20 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                  className="absolute top-8 right-8 w-32 h-40 rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&q=80&w=400"
+                    alt="Accessory detail"
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+
+                {/* Floating Badge - Top Left */}
+                <motion.div 
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                  className="absolute top-8 left-8 px-6 py-3 bg-white/95 backdrop-blur-md rounded-full shadow-xl border border-zinc-200/50"
+                >
+                  <p className="text-[10px] font-bold tracking-[0.2em] text-zinc-900 uppercase">
+                    New Arrivals
+                  </p>
+                </motion.div>
+
+                {/* Bottom Info Card */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 0.6 }}
+                  className="absolute bottom-8 left-8 right-8 p-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-zinc-200/50"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-bold tracking-[0.15em] text-zinc-500 uppercase mb-1">
+                        Featured This Week
+                      </p>
+                      <p className="text-2xl font-serif font-bold text-zinc-900">
+                        Premium Selection
+                      </p>
+                      <div className="flex items-center gap-1 mt-2">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-zinc-900 text-zinc-900" />
+                        ))}
+                        <span className="text-xs font-bold text-zinc-500 ml-2">5.0</span>
+                      </div>
+                    </div>
+                    <Link 
+                      to="/shop"
+                      className="w-14 h-14 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 group"
+                    >
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                  </div>
+                </motion.div>
+
+                {/* Small Floating Badge - Bottom Right */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.2, duration: 0.6 }}
+                  className="absolute bottom-32 right-8 w-20 h-20 rounded-full bg-zinc-900 text-white flex flex-col items-center justify-center shadow-2xl border-4 border-white"
+                >
+                  <p className="text-xs font-bold tracking-widest">UP TO</p>
+                  <p className="text-2xl font-serif font-bold">40%</p>
+                  <p className="text-[8px] font-bold tracking-widest">OFF</p>
+                </motion.div>
+              </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-zinc-200 rounded-full blur-3xl opacity-50"></div>
+              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-zinc-300 rounded-full blur-3xl opacity-40"></div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 

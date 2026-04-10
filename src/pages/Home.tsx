@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, TrendingUp, Star } from 'lucide-react';
+import { ArrowRight, Sparkles, TrendingUp } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import ComboCard from '../components/ComboCard';
 import { productsService } from '@/lib/firebase/products';
@@ -21,7 +21,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
-const categories = ['Shirts', 'Pants', 'Shoes', 'Hoddy'];
+const categories = ['Shirts', 'Pants', 'Shoes', 'Trousers'];
 
 export default function Home() {
   // ---------------------------------------------------------
@@ -71,26 +71,25 @@ export default function Home() {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="min-h-screen pt-20 md:pt-24 pb-20 overflow-hidden"
+      className="min-h-screen pt-20 md:pt-24 pb-20 overflow-hidden font-sans"
     >
       {/* 
-        ✨ PREMIUM HERO SECTION - Centered with Background Image
+        ✨ PREMIUM HERO SECTION - Clean & Minimal
       */}
       <section className="relative px-4 sm:px-6 lg:px-12 max-w-[1600px] mx-auto mb-20 md:mb-32">
         {/* Main Hero Container */}
-        <div className="relative h-[90vh] min-h-[600px] md:min-h-[700px] rounded-3xl md:rounded-[3rem] overflow-hidden shadow-[0_8px_60px_rgb(0,0,0,0.12)]">
+        <div className="relative h-[90vh] min-h-[600px] md:min-h-[750px] rounded-3xl md:rounded-[3rem] overflow-hidden shadow-[0_10px_80px_rgb(0,0,0,0.15)]">
           
           {/* Background Image with Overlay */}
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1618886614638-80e3c103d31a?auto=format&fit=crop&q=80&w=1600"
+              src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&q=80&w=1600"
               alt="Premium menswear collection"
               className="w-full h-full object-cover object-center"
             />
-            {/* Dark gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
-            {/* Additional side gradients for depth */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
+            {/* Elegant gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+            <div className="absolute inset-0 bg-black/20"></div>
           </div>
 
           {/* Centered Content */}
@@ -101,16 +100,16 @@ export default function Home() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="mb-6 md:mb-8 px-5 md:px-6 py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-md text-white text-[9px] md:text-[10px] font-bold tracking-[0.25em] uppercase inline-flex items-center gap-2 border border-white/20 shadow-lg"
+              className="mb-8 md:mb-10 px-6 md:px-8 py-2.5 md:py-3 rounded-full bg-white/10 backdrop-blur-md text-white text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase inline-flex items-center gap-2 border border-white/20"
             >
-              <Star className="w-3 h-3 fill-white" />
-              Premium Collection
+              Premium Menswear
             </motion.span>
             
             {/* Main Heading - ELVERA */}
             <motion.h1 
               variants={fadeUp}
-              className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-serif font-bold text-white tracking-tight leading-none mb-4 md:mb-6"
+              className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-light text-white tracking-wider leading-none mb-6 md:mb-8"
+              style={{ fontFamily: "'Playfair Display', serif" }}
             >
               ELVERA
             </motion.h1>
@@ -118,7 +117,7 @@ export default function Home() {
             {/* Simple Tagline */}
             <motion.p 
               variants={fadeUp}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 font-light tracking-wide mb-8 md:mb-12 max-w-3xl"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/95 font-light tracking-wide mb-12 md:mb-16 max-w-4xl"
             >
               Dress Better, Feel Confident
             </motion.p>
@@ -126,32 +125,32 @@ export default function Home() {
             {/* Stats Row - Mobile Optimized */}
             <motion.div 
               variants={fadeUp}
-              className="flex items-center justify-center gap-6 sm:gap-8 md:gap-12 mb-8 md:mb-12 pb-6 md:pb-8 border-b border-white/20 w-full max-w-lg"
+              className="flex items-center justify-center gap-8 sm:gap-12 md:gap-16 mb-12 md:mb-16 pb-8 md:pb-10 border-b border-white/20 w-full max-w-2xl"
             >
               <div>
-                <p className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white">500+</p>
-                <p className="text-[9px] sm:text-xs font-bold tracking-widest text-white/70 uppercase mt-1">Products</p>
+                <p className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-1">500+</p>
+                <p className="text-[10px] sm:text-xs font-medium tracking-[0.2em] text-white/70 uppercase">Products</p>
               </div>
-              <div className="w-px h-12 bg-white/20"></div>
+              <div className="w-px h-14 bg-white/20"></div>
               <div>
-                <p className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white">50+</p>
-                <p className="text-[9px] sm:text-xs font-bold tracking-widest text-white/70 uppercase mt-1">Brands</p>
+                <p className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-1">50+</p>
+                <p className="text-[10px] sm:text-xs font-medium tracking-[0.2em] text-white/70 uppercase">Brands</p>
               </div>
-              <div className="w-px h-12 bg-white/20"></div>
+              <div className="w-px h-14 bg-white/20"></div>
               <div>
-                <p className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white">4.9</p>
-                <p className="text-[9px] sm:text-xs font-bold tracking-widest text-white/70 uppercase mt-1">Rating</p>
+                <p className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-1">4.9</p>
+                <p className="text-[10px] sm:text-xs font-medium tracking-[0.2em] text-white/70 uppercase">Rating</p>
               </div>
             </motion.div>
 
             {/* CTA Buttons - Mobile Stacked */}
             <motion.div 
               variants={fadeUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4"
             >
               <Link
                 to="/shop"
-                className="group w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 bg-white text-zinc-900 rounded-full text-xs md:text-sm font-bold tracking-[0.2em] hover:bg-zinc-100 transition-all flex items-center justify-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-[0_8px_40px_rgb(0,0,0,0.4)] hover:-translate-y-0.5 uppercase"
+                className="group w-full sm:w-auto px-10 md:px-14 py-4 md:py-5 bg-white text-zinc-900 rounded-full text-xs md:text-sm font-semibold tracking-[0.2em] hover:bg-zinc-100 transition-all flex items-center justify-center gap-3 shadow-[0_10px_40px_rgb(0,0,0,0.3)] hover:shadow-[0_15px_50px_rgb(0,0,0,0.4)] hover:-translate-y-1 uppercase"
               >
                 Shop Collection
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -159,60 +158,36 @@ export default function Home() {
               
               <Link
                 to="/combos"
-                className="group w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 bg-transparent text-white border-2 border-white/30 backdrop-blur-sm rounded-full text-xs md:text-sm font-bold tracking-[0.2em] hover:bg-white/10 hover:border-white/50 transition-all flex items-center justify-center gap-3 uppercase"
+                className="group w-full sm:w-auto px-10 md:px-14 py-4 md:py-5 bg-transparent text-white border-2 border-white/40 backdrop-blur-sm rounded-full text-xs md:text-sm font-semibold tracking-[0.2em] hover:bg-white/10 hover:border-white/60 transition-all flex items-center justify-center gap-3 uppercase"
               >
                 View Outfits
               </Link>
             </motion.div>
 
-            {/* Floating Elements - Hidden on Mobile for Cleaner Look */}
+            {/* Single Floating Badge - Top Right (Desktop Only) */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="hidden md:block absolute top-8 right-8 lg:top-12 lg:right-12 px-6 py-3 bg-white/95 backdrop-blur-md rounded-full shadow-xl border border-white/50"
+              className="hidden lg:block absolute top-10 right-10 xl:top-16 xl:right-16 px-8 py-4 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/50"
             >
-              <p className="text-[10px] font-bold tracking-[0.2em] text-zinc-900 uppercase">
-                New Arrivals
+              <p className="text-xs font-semibold tracking-[0.2em] text-zinc-900 uppercase mb-1">
+                New Season
               </p>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1, duration: 0.6 }}
-              className="hidden md:flex absolute bottom-8 right-8 lg:bottom-12 lg:right-12 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-white text-zinc-900 flex-col items-center justify-center shadow-2xl border-4 border-white/20"
-            >
-              <p className="text-[9px] lg:text-xs font-bold tracking-widest">UP TO</p>
-              <p className="text-2xl lg:text-3xl font-serif font-bold">40%</p>
-              <p className="text-[7px] lg:text-[8px] font-bold tracking-widest">OFF</p>
-            </motion.div>
-
-            {/* Star Rating Badge - Mobile Friendly */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 md:left-8 md:translate-x-0 lg:bottom-12 lg:left-12 px-6 py-3 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/50"
-            >
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 md:w-4 md:h-4 fill-zinc-900 text-zinc-900" />
-                ))}
-                <span className="text-xs md:text-sm font-bold text-zinc-900 ml-2">5.0 Rating</span>
-              </div>
+              <p className="text-2xl font-light text-zinc-900">
+                2024 Collection
+              </p>
             </motion.div>
           </div>
 
-          {/* Decorative Blur Elements */}
-          <div className="absolute -top-10 -right-10 w-32 h-32 md:w-40 md:h-40 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-10 -left-10 w-40 h-40 md:w-48 md:h-48 bg-white/10 rounded-full blur-3xl"></div>
+          {/* Subtle Decorative Elements */}
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
         </div>
       </section>
 
       {/* ---------------------------------------------------------
-          EVERYTHING BELOW THIS LINE IS 100% YOUR ORIGINAL UI CODE
-          (Made Mobile Responsive)
+          EVERYTHING BELOW - UPDATED WITH NEW FONT
           --------------------------------------------------------- */}
       <section className="px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-20 md:mb-32">
         <motion.div
@@ -220,19 +195,19 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 md:mb-12 gap-4"
+          className="flex flex-col md:flex-row items-start md:items-end justify-between mb-10 md:mb-14 gap-4"
         >
           <div>
-            <div className="flex items-center gap-3 text-zinc-500 mb-3 md:mb-4 font-bold tracking-widest text-xs uppercase">
+            <div className="flex items-center gap-3 text-zinc-500 mb-4 font-semibold tracking-[0.2em] text-xs uppercase">
               <Sparkles className="w-4 h-4" /> Discover
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-text">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-zinc-900 tracking-wide">
               Shop by Category
             </h2>
           </div>
           <Link
             to="/shop"
-            className="flex md:hidden lg:flex items-center gap-2 text-xs md:text-sm font-bold tracking-widest text-text hover:text-zinc-500 transition-colors uppercase"
+            className="flex md:hidden lg:flex items-center gap-2 text-xs md:text-sm font-semibold tracking-[0.2em] text-zinc-900 hover:text-zinc-600 transition-colors uppercase"
           >
             All Categories <ArrowRight className="w-4 h-4" />
           </Link>
@@ -243,13 +218,13 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-8"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8"
         >
           {categories.map((cat, idx) => (
             <motion.div key={cat} variants={fadeUp}>
               <Link
                 to={`/shop?category=${cat}`}
-                className="group relative aspect-[4/5] rounded-2xl md:rounded-[2rem] overflow-hidden block bg-zinc-100 shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-zinc-100"
+                className="group relative aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden block bg-zinc-100 shadow-[0_4px_30px_rgb(0,0,0,0.08)] border border-zinc-100"
               >
                 <img
                   src={`https://images.unsplash.com/photo-${['1596755094514-f87e34085b2c', '1624378439575-d8705ad7ae80', '1542272454315-4c01d7abdf4a', '1556821840-3a63f95609a7'][idx]}?auto=format&fit=crop&q=80&w=800`}
@@ -257,9 +232,9 @@ export default function Home() {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent transition-opacity group-hover:opacity-90"></div>
-                <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6">
-                  <h3 className="text-lg md:text-xl font-serif font-bold text-white mb-1 md:mb-2">{cat}</h3>
-                  <span className="text-[10px] md:text-xs font-bold tracking-widest text-white/70 uppercase group-hover:text-white transition-colors">
+                <div className="absolute bottom-5 md:bottom-7 left-5 md:left-7 right-5 md:right-7">
+                  <h3 className="text-xl md:text-2xl font-light text-white mb-2 tracking-wide">{cat}</h3>
+                  <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-white/70 uppercase group-hover:text-white transition-colors">
                     Explore <ArrowRight className="w-3 h-3 inline-block ml-1" />
                   </span>
                 </div>
@@ -275,19 +250,19 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 md:mb-12 gap-4"
+          className="flex flex-col md:flex-row items-start md:items-end justify-between mb-10 md:mb-14 gap-4"
         >
           <div>
-            <div className="flex items-center gap-3 text-zinc-500 mb-3 md:mb-4 font-bold tracking-widest text-xs uppercase">
+            <div className="flex items-center gap-3 text-zinc-500 mb-4 font-semibold tracking-[0.2em] text-xs uppercase">
               <TrendingUp className="w-4 h-4" /> Trending
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-text">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-zinc-900 tracking-wide">
               Best Picks This Week
             </h2>
           </div>
           <Link
             to="/shop"
-            className="flex md:hidden lg:flex items-center gap-2 text-xs md:text-sm font-bold tracking-widest text-text hover:text-zinc-500 transition-colors uppercase"
+            className="flex md:hidden lg:flex items-center gap-2 text-xs md:text-sm font-semibold tracking-[0.2em] text-zinc-900 hover:text-zinc-600 transition-colors uppercase"
           >
             View All <ArrowRight className="w-4 h-4" />
           </Link>
@@ -308,23 +283,23 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-12 max-w-[1400px] mx-auto mb-16 md:mb-20 bg-zinc-900 rounded-3xl md:rounded-[3rem] py-16 md:py-20 lg:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+      <section className="px-4 sm:px-6 lg:px-12 max-w-[1400px] mx-auto mb-16 md:mb-20 bg-zinc-900 rounded-3xl md:rounded-[3rem] py-16 md:py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
         <div className="relative z-10">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="flex flex-col items-center text-center mb-12 md:mb-16 px-4"
+            className="flex flex-col items-center text-center mb-14 md:mb-20 px-4"
           >
-            <span className="mb-4 md:mb-6 px-5 md:px-6 py-2 rounded-capsule bg-white/10 text-white text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase border border-white/10">
+            <span className="mb-6 md:mb-8 px-6 md:px-8 py-2.5 rounded-full bg-white/10 text-white text-[10px] md:text-xs font-semibold tracking-[0.25em] uppercase border border-white/10">
               Style Guide
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-6xl font-serif font-bold text-white mb-4 md:mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-light text-white mb-6 tracking-wide">
               Complete The Look
             </h2>
-            <p className="text-sm md:text-base lg:text-lg text-zinc-400 font-medium max-w-2xl text-balance">
+            <p className="text-base md:text-lg lg:text-xl text-zinc-400 font-light max-w-2xl leading-relaxed">
               Hand-picked, fully styled outfits. Shop the entire look across multiple platforms with a single click.
             </p>
           </motion.div>
@@ -343,12 +318,12 @@ export default function Home() {
             ))}
           </motion.div>
 
-          <div className="mt-12 md:mt-16 text-center">
+          <div className="mt-14 md:mt-20 text-center">
             <Link
               to="/combos"
-              className="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-white text-text rounded-capsule text-xs md:text-sm font-bold tracking-widest hover:bg-zinc-100 transition-all shadow-xl group"
+              className="inline-flex items-center gap-3 px-10 md:px-14 py-4 md:py-5 bg-white text-zinc-900 rounded-full text-xs md:text-sm font-semibold tracking-[0.2em] hover:bg-zinc-100 transition-all shadow-2xl group uppercase"
             >
-              EXPLORE ALL OUTFITS
+              Explore All Outfits
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>

@@ -21,7 +21,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
-const categories = ['Shirts', 'Pants', 'Shoes', 'Trousers'];
+const categories = ['Shirts', 'Pants', 'Shoes', 'Hoddy'];
 
 export default function Home() {
   // ---------------------------------------------------------
@@ -83,14 +83,14 @@ export default function Home() {
           {/* Background Image with Overlay */}
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&q=80&w=1600"
+              src="https://images.unsplash.com/photo-1618886614638-80e3c103d31a?auto=format&fit=crop&q=80&w=1600"
               alt="Premium menswear collection"
               className="w-full h-full object-cover object-center"
             />
             {/* Dark gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
             {/* Additional side gradients for depth */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
           </div>
 
           {/* Centered Content */}
@@ -104,7 +104,7 @@ export default function Home() {
               className="mb-6 md:mb-8 px-5 md:px-6 py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-md text-white text-[9px] md:text-[10px] font-bold tracking-[0.25em] uppercase inline-flex items-center gap-2 border border-white/20 shadow-lg"
             >
               <Star className="w-3 h-3 fill-white" />
-              Curated Excellence
+              Premium Collection
             </motion.span>
             
             {/* Main Heading - ELVERA */}
@@ -115,21 +115,12 @@ export default function Home() {
               ELVERA
             </motion.h1>
             
-            {/* Tagline */}
+            {/* Simple Tagline */}
             <motion.p 
               variants={fadeUp}
-              className="text-base sm:text-lg md:text-2xl lg:text-3xl text-white/90 font-light tracking-wide mb-3 md:mb-4 max-w-3xl"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 font-light tracking-wide mb-8 md:mb-12 max-w-3xl"
             >
-              Premium Menswear Curation
-            </motion.p>
-
-            {/* Description */}
-            <motion.p 
-              variants={fadeUp}
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 font-medium leading-relaxed max-w-2xl mb-8 md:mb-12 px-4"
-            >
-              Discover the art of exceptional dressing. Handpicked from the world's finest platforms, 
-              curated exclusively for the modern gentleman.
+              Dress Better, Feel Confident
             </motion.p>
 
             {/* Stats Row - Mobile Optimized */}

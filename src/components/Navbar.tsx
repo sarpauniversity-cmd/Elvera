@@ -48,23 +48,23 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-3 backdrop-blur-xl bg-white/80 border-b border-zinc-200/50 shadow-sm' : 'py-5 bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-3 backdrop-blur-xl bg-white/80 shadow-sm' : 'py-5 bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold tracking-tight text-zinc-900 hover:text-zinc-700 transition-colors" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <Link to="/" className="text-2xl font-serif font-semibold tracking-widest text-zinc-900 hover:text-zinc-700 transition-colors">
             ELVERA
           </Link>
 
-          {/* Desktop Navigation - Individual Pill Style */}
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation - Pill Container with Pill Links */}
+          <nav className="hidden md:flex items-center gap-2 bg-zinc-100/80 backdrop-blur-sm rounded-full px-2 py-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   location.pathname === link.path
-                    ? 'bg-zinc-900 text-white shadow-lg'
-                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
+                    ? 'bg-zinc-900 text-white shadow-md'
+                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200'
                 }`}
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
@@ -162,7 +162,7 @@ export default function Navbar() {
           >
             {/* Mobile Header */}
             <div className="p-6 flex items-center justify-between border-b border-zinc-200">
-              <span className="text-xl font-bold tracking-tight text-zinc-900">ELVERA</span>
+              <span className="text-xl font-serif font-semibold tracking-widest text-zinc-900">ELVERA</span>
               <button 
                 className="p-2 bg-zinc-100 rounded-full text-zinc-600 hover:bg-zinc-200 transition-colors" 
                 onClick={() => setMobileMenuOpen(false)}

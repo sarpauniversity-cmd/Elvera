@@ -55,16 +55,16 @@ export default function Navbar() {
             ELVERA
           </Link>
 
-          {/* Desktop Navigation - Pill Style */}
-          <nav className="hidden md:flex items-center gap-2 bg-zinc-100/80 backdrop-blur-sm rounded-full px-2 py-2">
+          {/* Desktop Navigation - Individual Pill Style */}
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   location.pathname === link.path
-                    ? 'bg-white text-zinc-900 shadow-md'
-                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-white/50'
+                    ? 'bg-zinc-900 text-white shadow-lg'
+                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
                 }`}
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
